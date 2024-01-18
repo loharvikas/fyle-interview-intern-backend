@@ -1,0 +1,11 @@
+version: '3'
+services:
+  core:
+    build:
+      context: .
+    ports:
+      - "7755:7755"
+    volumes:
+      - "./:/app"
+    environment:
+      - FLASK_APP=core/server.py
