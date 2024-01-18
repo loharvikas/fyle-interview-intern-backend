@@ -58,6 +58,8 @@ class Assignment(db.Model):
 
         db.session.flush()
         return assignment
+    
+
 
     @classmethod
     def submit(cls, _id, teacher_id, auth_principal: AuthPrincipal):
@@ -84,10 +86,17 @@ class Assignment(db.Model):
 
         return assignment
 
+
     @classmethod
     def get_assignments_by_student(cls, student_id):
         return cls.filter(cls.student_id == student_id).all()
+    
 
     @classmethod
     def get_assignments_by_teacher(cls, teacher_id):
         return cls.filter(cls.teacher_id == teacher_id).all()
+    
+    
+    @classmethod
+    def get_submited_and_graded_assignments_by_principal(cls):
+        return cls.filter(cls.state.in_([AssignmentStateEnum.SUBMITTED.value,AssignmentStateEnum.SUBMITTED.value])).all()
