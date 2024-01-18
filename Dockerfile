@@ -1,6 +1,6 @@
-# Pull base image
+# Pull the base image
 FROM python:3.8
-LABEL maintainer="vikas"
+LABEL maintainer="Fyle"
 
 # Set the working directory in the container
 WORKDIR /app
@@ -8,7 +8,7 @@ WORKDIR /app
 # Copy the current directory contents into the container
 COPY . /app
 
-# Install any needed packages specified in requirements.txt
+# Install required packages and dependencies specified in requirements.txt
 RUN pip install virtualenv
 RUN virtualenv env --python=python3.8
 RUN . env/bin/activate
@@ -27,5 +27,5 @@ EXPOSE 7755
 # Set executable permissions
 RUN chmod +x /app/run.sh
 
-# Run scripts when the container launches
+# Run the scripts when the container launches
 CMD ["bash","run.sh"]
