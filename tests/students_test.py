@@ -28,7 +28,6 @@ def test_post_assignment_null_content(client, h_student_1):
     """
     failure case: content cannot be null
     """
-
     response = client.post(
         '/student/assignments',
         headers=h_student_1,
@@ -63,7 +62,8 @@ def test_submit_assignment_student_1(client, h_student_1):
         headers=h_student_1,
         json={
             'id': 2,
-            'teacher_id': 2
+            'teacher_id': 2,
+            "content": "ABCD TESTPOST"
         })
 
     assert response.status_code == 200

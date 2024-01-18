@@ -1,1 +1,2 @@
 -- Write query to find the number of grade A's given by the teacher who has graded the most assignments
+SELECT COUNT(*) AS val  FROM assignments a JOIN teachers t ON t.id = a.teacher_id WHERE a.grade = 'A' GROUP BY t.id ORDER BY COUNT(*) DESC LIMIT 1;
