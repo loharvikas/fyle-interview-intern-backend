@@ -2,6 +2,7 @@ import enum
 from core import db
 from core.apis.decorators import AuthPrincipal
 from core.libs import helpers, assertions
+from core.libs.exceptions import FyleError
 from core.models.teachers import Teacher
 from core.models.students import Student
 from sqlalchemy.types import Enum as BaseEnum
@@ -105,3 +106,5 @@ class Assignment(db.Model):
     @classmethod
     def get_submited_and_graded_assignments_by_principal(cls):
         return cls.filter(cls.state.in_([AssignmentStateEnum.SUBMITTED.value,AssignmentStateEnum.GRADED.value])).all()
+
+

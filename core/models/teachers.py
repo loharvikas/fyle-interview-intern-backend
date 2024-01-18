@@ -1,5 +1,6 @@
 from core import db
 from core.libs import helpers
+from core.libs.exceptions import FyleError
 
 
 class Teacher(db.Model):
@@ -12,6 +13,15 @@ class Teacher(db.Model):
     def __repr__(self):
         return '<Teacher %r>' % self.id
 
+    @classmethod
+    def get_by_id(cls, id):
+        # Added to for test coverage.
+        teacher = cls.query.filter_by(id=id).first()
+        if teacher is None:
+            fyleError =  FyleError("No teacher with this id was found", 404)
+            result = fyleError.to_dict()
+            raise FyleError(result['message'], result['status_code'])
+        return teacher
 
     @classmethod
     def filter(cls, *criterion):

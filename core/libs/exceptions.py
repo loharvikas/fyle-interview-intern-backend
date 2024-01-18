@@ -9,4 +9,5 @@ class FyleError(Exception):
     def to_dict(self):
         res = dict()
         res['message'] = self.message
+        res['status_code'] = self.status_code
         return res

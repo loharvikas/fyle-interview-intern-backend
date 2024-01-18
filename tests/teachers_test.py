@@ -1,3 +1,6 @@
+import json
+
+
 def test_get_assignments_teacher_1(client, h_teacher_1):
     response = client.get(
         '/teacher/assignments',
@@ -25,6 +28,23 @@ def test_get_assignments_teacher_2(client, h_teacher_2):
         assert assignment['teacher_id'] == 2
         assert assignment['state'] in ['SUBMITTED', 'GRADED']
 
+def test_grade_assignment(client, h_teacher_1):
+    """
+    success case: grade an assignment
+    """
+    response = client.post(
+        '/teacher/assignments/grade',
+        headers=h_teacher_1,
+        json={
+            "id": 1,
+            "grade": "A"
+        }
+    )
+
+    assert response.status_code == 200
+    data = response.json
+
+    assert data['data']['grade'] == 'A'
 
 def test_grade_assignment_cross(client, h_teacher_2):
     """
@@ -100,3 +120,36 @@ def test_grade_assignment_draft_assignment(client, h_teacher_1):
     data = response.json
 
     assert data['error'] == 'FyleError'
+
+
+
+def test_get_teacher_detail_does_not_exist(client):
+    """
+    failure case: If a teacher does not exists check and throw 404
+    """
+    response = client.get(
+        '/teacher/detail',
+        headers= {
+        'X-Principal': json.dumps({
+            'teacher_id': 10000000,
+            'user_id': 1
+        })
+        }
+    )
+
+    assert response.status_code == 404
+
+
+def test_get_teacher_detail(client, h_teacher_1):
+    """
+    success case: get teacher detail
+    """
+    response = client.get(
+        '/teacher/detail',
+        headers=h_teacher_1
+    )
+
+    assert response.status_code == 200
+    data = response.json
+
+    assert data['data']['id'] == 1

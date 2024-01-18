@@ -1,5 +1,7 @@
+from sqlite3 import IntegrityError
 from core import db
 from core.libs import helpers
+from core.libs.exceptions import FyleError
 
 
 class Student(db.Model):
@@ -11,3 +13,5 @@ class Student(db.Model):
 
     def __repr__(self):
         return '<Student %r>' % self.id
+
+        
