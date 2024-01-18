@@ -1,32 +1,49 @@
-# Fyle Backend Challenge
+# Fyle Backend (Assignment)
 
-## Who is this for?
+## Setup project with Docker.
 
-This challenge is meant for candidates who wish to intern at Fyle and work with our engineering team. You should be able to commit to at least 6 months of dedicated time for internship.
+```
+docker compose up
+```
 
-## Why work at Fyle?
+This command will run existing images from docker hub or build new images if they don't exist.
 
-Fyle is a fast-growing Expense Management SaaS product. We are ~40 strong engineering team at the moment. 
+The following containers will start running:
 
-We are an extremely transparent organization. Check out our [careers page](https://careers.fylehq.com) that will give you a glimpse of what it is like to work at Fyle. Also, check out our Glassdoor reviews [here](https://www.glassdoor.co.in/Reviews/Fyle-Reviews-E1723235.htm). You can read stories from our teammates [here](https://stories.fylehq.com).
+- fyle-interview-intern-backend-core will run on port 7575
+
+```
+docker compose build
+```
+
+This command will build new images (this will be required when you make changes in Dockerfile or requirements.txt file)
 
 
-## Challenge outline
 
-This challenge involves writing a backend service for a classroom. The challenge is described in detail [here](./Application.md)
+---
+
+## Migrations
+
+In order to run migrations you will have to stop existing running fyle-interview-intern-backend-core container, and run the following commands as per requirement
 
 
-## What happens next?
+### Run migrations
 
-You will hear back within 48 hours from us via email. 
+```
+flask db upgrade -d core/migrations/
+```
+
+### How to run shell command
+```
+docker compose run --rm app sh -c "<command>"
+```
+
+---
+
+## Setup project without docker
 
 
 ## Installation
-
-1. Fork this repository to your github account
-2. Clone the forked repository and proceed with steps mentioned below
-
-### Install requirements
 
 ```
 virtualenv env --python=python3.8
