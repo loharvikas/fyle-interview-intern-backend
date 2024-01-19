@@ -5,6 +5,9 @@ from functools import wraps
 
 
 class AuthPrincipal:
+    """
+    It stores current context of the user in the request-response cycle.
+    """
     def __init__(self, user_id, student_id=None, teacher_id=None, principal_id=None):
         self.user_id = user_id
         self.student_id = student_id
@@ -21,6 +24,13 @@ def accept_payload(func):
 
 
 def authenticate_principal(func):
+    """
+    A lightweight decorator to authenticate the incoming request.
+
+    TODO: This decorator can be extended to support other authentication mechanisms like JWT, OAuth etc.
+          Currently the token is not encrypted and is passed as a header, which is not secure. So we can
+          use mechanisms like JWT to encrypt the token and pass it as a header.
+    """
     @wraps(func)
     def wrapper(*args, **kwargs):
         p_str = request.headers.get('X-Principal')

@@ -5,6 +5,7 @@ from core.libs import helpers
 class FyleBaseModel(db.Model):
     """
     Abstract base model.
+    Every model should inherit from this class.
     """
     __abstract__ = True
     created_at = db.Column(db.TIMESTAMP(timezone=True), default=helpers.get_utc_now, nullable=False)
