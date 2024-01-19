@@ -71,8 +71,8 @@ pytest -vvv -s tests/
 # pytest --cov
 # open htmlcov/index.html
 ```
-## Code Coverage
-Achieved 99% code coverage.
+## Test Coverage
+Achieved 99% test coverage.
 <img width="1470" alt="Screenshot 2024-01-19 at 1 25 23 PM" src="https://github.com/loharvikas/fyle-interview-intern-backend/assets/56187207/7819673f-c14d-4468-80be-7125b4835c0b">
 
 ## PyTest
