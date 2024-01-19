@@ -1,6 +1,6 @@
 # Improvements that can be made.
 
-## Seprating business logic from models to its seperate service.
+## Separating business logic from models to its separate service.
 
 ### Current scenario.
 
@@ -30,15 +30,15 @@ class Assignment(FyleBaseModel):
     - Models become bulky with business logic, violating the principle of thin models.
 3)  Everything related to the model will need to be put here.
 4)  Too much coupling in the model layer
-    - High coupling between models and business logic reduce flexibility.
+    - High coupling between models and business logic reduces flexibility.
 5) Against DRY principle
-6) Violation of Single Responsibility Principle (SRP):
-7) Testing and Mocking Difficulties:
+6) Testing and Mocking Difficulties:
     - Testing becomes complex with tightly coupled models, and mocking requires database interactions.
 
 ## Solution
 
-The business logic should be seprated into its own class (service layer) . API layer should directly talk to service layer and service layer will communicate to model layer
+To make your code more organized and easier to maintain, it's better to separate the business logic into its class, known as a service layer. This service layer can then be called by the API layer, and then the service layer can communicate with the model layer.
+<img width="1138" alt="Screenshot 2024-01-19 at 2 21 27 PM" src="https://github.com/loharvikas/fyle-interview-intern-backend/assets/56187207/feac69aa-7569-423c-97d4-151dcaacb50d">
 
 #### Model Layer
 
@@ -87,6 +87,6 @@ class AssignmentAPI:
 
 # Authentication mechanism
 
-Currently there is no authenticaiton porotocol being used, information inside header is plain text which is not secure, protocals like JWT can be used.
+Currently, there is no authentication protocol being used, information inside the header is plain text which is not secure, protocols like JWT can be used.
 
 
