@@ -71,5 +71,15 @@ pytest -vvv -s tests/
 # pytest --cov
 # open htmlcov/index.html
 ```
+# Code Coverage
+Achieved 99% code coverage.
+<img width="1470" alt="Screenshot 2024-01-19 at 1 25 23 PM" src="https://github.com/loharvikas/fyle-interview-intern-backend/assets/56187207/7819673f-c14d-4468-80be-7125b4835c0b">
+
+# PyTest
+<img width="795" alt="Screenshot 2024-01-19 at 12 59 13 PM" src="https://github.com/loharvikas/fyle-interview-intern-backend/assets/56187207/2a5ea0cc-d2bd-4127-b31c-0e947a62ffa3">
+
+# Added Github actions
+<img width="795" alt="Screenshot 2024-01-19 at 12 59 13 PM" src="https://github.com/loharvikas/fyle-interview-intern-backend/assets/56187207/ea8b2c33-07ff-4f8e-8310-c654f851e014">
+
 # Improvements that can be made.
-Find the detail [Here](https://github.com/loharvikas/fyle-interview-intern-backend/blob/main/Improvement.md)
+Find the details [Here](https://github.com/loharvikas/fyle-interview-intern-backend/blob/main/Improvement.md)
