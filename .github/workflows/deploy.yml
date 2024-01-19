@@ -28,16 +28,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt 
 
-      - name: Run tests with code coverage
+      - name: Run tests with code coverage and generate HTML report
         run: |
              export FLASK_APP=core/server.py
              flask db upgrade -d core/migrations/
-             pytest -vvv -s tests/
+             pytest --cov --cov-report=html:coverage_re
+             echo "HTML report generated"
       
-      - name: Generate HTML coverage report
-        run: |
-          pytest --cov --cov-report=html:coverage_re
-          echo "HTML report generated"
       
       - name: Upload HTML coverage report
         uses: actions/upload-artifact@v2
