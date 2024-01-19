@@ -50,7 +50,7 @@ virtualenv env --python=python3.8
 source env/bin/activate
 pip install -r requirements.txt
 ```
-### Reset DB
+### Reset DB and run migrations.
 
 ```
 export FLASK_APP=core/server.py
