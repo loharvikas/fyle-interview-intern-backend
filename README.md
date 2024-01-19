@@ -2,6 +2,12 @@
 
 ## Setup project with Docker.
 
+## Prerequisites
+
+Make sure you have the following installed on your machine:
+
+- [Docker](https://docs.docker.com/get-docker/)
+
 ```
 docker-compose up
 ```
@@ -18,8 +24,9 @@ docker compose build
 
 This command will build new images (this will be required when you make changes in the Dockerfile or requirements.txt file)
 
+## Configuration
 
-
+- The Docker configuration is defined in the Dockerfile and docker-compose.yml files.
 ---
 
 ## Migrations
@@ -34,9 +41,11 @@ flask db upgrade -d core/migrations/
 ```
 
 ### How to run the shell command
+Before running this command, ensure that the container is not running.
 ```
-docker compose run --rm app sh -c "<command>"
+docker compose run --rm <container_name> sh -c "<command>"
 ```
+
 
 ---
 
@@ -82,4 +91,4 @@ Achieved 99% test coverage.
 <img width="1470" alt="Screenshot 2024-01-19 at 12 59 56 PM" src="https://github.com/loharvikas/fyle-interview-intern-backend/assets/56187207/ea4edde3-8920-447e-813f-30d989450526">
 
 ## Improvements that can be made.
-Find the details [Here](https://github.com/loharvikas/fyle-interview-intern-backend/blob/main/Improvement.md)
+Find the details [here](https://github.com/loharvikas/fyle-interview-intern-backend/blob/main/Improvement.md).
