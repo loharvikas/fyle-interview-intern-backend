@@ -153,3 +153,49 @@ def test_get_teacher_detail(client, h_teacher_1):
     data = response.json
 
     assert data['data']['id'] == 1
+
+
+def test_create_teacher(client):
+    """
+    success case: create a new teacher
+    """
+    response = client.post(
+        '/teacher/create',
+        json={
+            "email": "test@gmail.com",
+            "username": "test",
+        })
+    
+    assert response.status_code == 200
+
+
+def test_create_teacher_with_existing_email(client):
+    """
+    failure case: create a new teacher with existing email
+    """
+    response = client.post(
+        '/teacher/create',
+        json={
+            "email": "test@gmail.com",
+            "username": "test1",
+        })
+    
+
+
+    assert response.status_code == 500
+
+
+def test_create_teacher_with_existing_username(client):
+    """
+    failure case: create a new teacher with existing username
+    """
+    response = client.post(
+        '/teacher/create',
+        json={
+            "email": "new@gmail.com",
+            "username": "test",
+        })
+
+
+    assert response.status_code == 500
+    

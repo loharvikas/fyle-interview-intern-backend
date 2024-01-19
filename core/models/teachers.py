@@ -1,8 +1,9 @@
+from sqlite3 import IntegrityError
 from core import db
 from core.libs import helpers
 from core.libs.exceptions import FyleError
 from core.libs.models import FyleBaseModel
-
+from core.models.users import User
 class Teacher(FyleBaseModel):
     __tablename__ = 'teachers'
     id = db.Column(db.Integer, db.Sequence('teachers_id_seq'), primary_key=True)
@@ -26,3 +27,17 @@ class Teacher(FyleBaseModel):
         Get all teachers associated with a principal.
         """
         return cls.filter().all()
+    
+
+    @classmethod
+    def create(cls, email:str,username:str) -> 'Teacher':
+        """
+        Create a new teacher.
+        """
+        # create a new user
+        user = User.create(email=email, username=username)
+        # create a new teacher
+        teacher = Teacher(user_id=user.id)
+        db.session.add(teacher)
+        db.session.commit()
+        return teacher
