@@ -45,6 +45,23 @@ def test_grade_assignment(client, h_principal):
     assert response.json['data']['state'] == AssignmentStateEnum.GRADED.value
     assert response.json['data']['grade'] == GradeEnum.C
 
+def test_grade_assignment_with_wrong_grade(client, h_principal):
+    """
+    failure case: If an assignment is graded with grade other than A, B, C, D, it should fail.
+    """
+    response = client.post(
+        '/principal/assignments/grade',
+        json={
+            'id': 4,
+            'grade': 'T'
+        },
+        headers=h_principal
+    )
+
+    assert response.status_code == 400
+
+
+
 
 def test_regrade_assignment(client, h_principal):
     response = client.post(

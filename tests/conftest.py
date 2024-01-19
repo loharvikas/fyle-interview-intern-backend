@@ -7,7 +7,13 @@ from tests import app
 def client():
     return app.test_client()
 
-
+@pytest.fixture
+def app_ctx():
+    """
+    Create an app context for the tests.
+    """
+    return app
+        
 @pytest.fixture
 def h_student_1():
     headers = {

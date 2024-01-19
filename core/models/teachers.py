@@ -1,17 +1,13 @@
 from core import db
 from core.libs import helpers
 from core.libs.exceptions import FyleError
+from core.libs.models import FyleBaseModel
 
-
-class Teacher(db.Model):
+class Teacher(FyleBaseModel):
     __tablename__ = 'teachers'
     id = db.Column(db.Integer, db.Sequence('teachers_id_seq'), primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    created_at = db.Column(db.TIMESTAMP(timezone=True), default=helpers.get_utc_now, nullable=False)
-    updated_at = db.Column(db.TIMESTAMP(timezone=True), default=helpers.get_utc_now, nullable=False, onupdate=helpers.get_utc_now)
 
-    def __repr__(self):
-        return '<Teacher %r>' % self.id
 
     @classmethod
     def get_by_id(cls, id):
@@ -23,11 +19,10 @@ class Teacher(db.Model):
             raise FyleError(result['message'], result['status_code'])
         return teacher
 
-    @classmethod
-    def filter(cls, *criterion):
-        db_query = db.session.query(cls)
-        return db_query.filter(*criterion)
 
     @classmethod
     def get_teachers_by_principal(cls):
+        """
+        Get all teachers associated with a principal.
+        """
         return cls.filter().all()
