@@ -12,7 +12,7 @@ class Assignment(FyleBaseModel):
     id = db.Column(db.Integer, db.Sequence('assignments_id_seq'), primary_key=True)
     student_id = db.Column(db.Integer, db.ForeignKey(Student.id), nullable=False)
     teacher_id = db.Column(db.Integer, db.ForeignKey(Teacher.id), nullable=True)
-    content = db.Column(db.Text)
+    content = db.Column(db.Text, nullable=False)
     grade = db.Column(BaseEnum(GradeEnum))
     state = db.Column(BaseEnum(AssignmentStateEnum), default=AssignmentStateEnum.DRAFT, nullable=False)
 
@@ -72,7 +72,7 @@ class Assignment(FyleBaseModel):
         # if user is a teacher, then he can grade only his own assignments.
         if auth_principal.teacher_id:
             assertions.assert_valid(auth_principal.principal_id is None and auth_principal.teacher_id == assignment.teacher_id, 'This assignment belongs to some other teacher')
-        assertions.assert_valid(grade is not None or grade != '', 'assignment with empty grade cannot be graded')
+        assertions.assert_valid(grade is not None, 'assignment with empty grade cannot be graded')
         assertions.assert_valid(assignment.state in (AssignmentStateEnum.SUBMITTED.value, AssignmentStateEnum.GRADED.value), 'only submitted or graded assignment can be graded')
         assignment.grade = grade
         assignment.state = AssignmentStateEnum.GRADED
